@@ -131,7 +131,7 @@ void Menu::decryptText(){
             result=Crypto::caesarDecrypt(text,std::stoi(strkey));
         }
         else if(CryptType == 2){
-            result=Crypto::stringTohex(Crypto::xorDecrypt(text,strkey)); 
+            result=Crypto::xorDecrypt(Crypto::hexTostring(text),strkey);
         }
         std::cout<<"解密结果："<<result<<std::endl;
     }
@@ -191,7 +191,6 @@ void Menu::decryptFile(){
         }
         else if(CryptType == 2){
             FileHandler::FileWrite(outputPath,Crypto::xorDecrypt(Crypto::hexTostring(text),strkey));
-            std::cout<<Crypto::xorDecrypt(Crypto::hexTostring(text),strkey)<<std::endl;
         }
         std::cout<<"解密结果已保存到："<<outputPath<<std::endl;
     }
